@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  backend-app-tracker:
+    image: job-app-tracker
+    build:
+      context: ./backend
+    volumes:
+      - ../backend:/backend
+      - ../.env:/backend/.env
+    container_name: job-app-tracker
+    working_dir: /backend
+    tty: true
