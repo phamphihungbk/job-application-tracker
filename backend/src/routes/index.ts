@@ -1,13 +1,13 @@
 import { Application } from 'express';
-import stagesRouter from './Stages';
 import jobsRouter from './Jobs';
+import usersRouter from './Users';
 
 export default class Routes {
     constructor(app: Application) {
-        // stages routes
-        app.use('/api/v1/stages', stagesRouter);
-
         // jobs routes
         app.use('/api/v1/jobs', jobsRouter);
+
+        // users routes
+        app.use('/api/v1/users', usersRouter);
     }
 }

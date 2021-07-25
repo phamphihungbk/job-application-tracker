@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  app-tracker:
+    driver: bridge
+
 services:
   backend-app-tracker:
     image: job-app-tracker
@@ -11,3 +15,18 @@ services:
     container_name: job-app-tracker
     working_dir: /backend
     tty: true
+    networks:
+      - app-tracker
+
+  postgres-app-tracker:
+    image: postgres-app-tracker
+      build:
+        context: ./postgres
+    volumes:
+      - ./postgres/data:/var/lib/postgres
+    restart: always
+    container_name: postgres-app-tracker
+    environment:
+      POSTGRES_PASSWORD: secret
+    networks:
+      - app-tracker
