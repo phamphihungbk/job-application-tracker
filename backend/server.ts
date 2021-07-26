@@ -7,7 +7,7 @@ import Server from './src/index';
 
 const app: Application = express();
 const server: Server = new Server(app);
-const port: number = process.env.BACK_PORT ? parseInt(process.env.BACK_PORT, 10) : 3000;
+const port: number = process.env.BACKEND_PORT ? parseInt(process.env.BACKEND_PORT, 10) : 3000;
 
 app.listen(port, 'localhost', function () {
     console.info(`Server running on : http://localhost:${port}`);

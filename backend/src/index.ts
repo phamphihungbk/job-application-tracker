@@ -18,7 +18,7 @@ export default class Server {
 
     public config(app: Application): void {
         const accessLogStream: WriteStream = fs.createWriteStream(
-            path.join(__dirname, './logs/access.log'),
+            '/backend/logs/access.log',
             { flags: 'a' }
         );
         app.use(morgan('combined', { stream: accessLogStream }));

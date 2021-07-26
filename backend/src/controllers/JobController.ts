@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { apiErrorHandler } from '../handlers/errorHandler';
 import JobRepository from '../repositories/JobRepository';
 
-export default class JobsController {
+export default class JobController {
     constructor() { }
 
     async getAllJobs(req: Request, res: Response, next: NextFunction) {
