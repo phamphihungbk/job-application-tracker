@@ -1,0 +1,10 @@
+{
+  "name": "job-application-tracker-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for job application tracker",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HUNG PHAM",
+  "license": "ISC"
+}

@@ -2,10 +2,16 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "sourceMap": true,
     "strict": true,
-    "allowJs": false
+    "allowJs": false,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@base/*": ["./*"]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "files.exclude": {
     "**/.git": true,
