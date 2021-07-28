@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { fixModuleAlias } from './utils/fix-module-alias';
 fixModuleAlias(__dirname);
 import { appConfig } from '@base/config/app';
-import { useContainer as routingControllersUseContainer, useExpressServer, getMetadataArgsStorage } from 'routing-controllers';
+import { useContainer as routingControllersUseContainer, useExpressServer } from 'routing-controllers';
 import { loadHelmet } from '@base/utils/load-helmet';
 import { Container } from 'typedi';
 import { createConnection, useContainer as typeormOrmUseContainer } from 'typeorm';
@@ -10,6 +10,7 @@ import { Container as containerTypeorm } from 'typeorm-typedi-extensions';
 import { useSocketServer, useContainer as socketUseContainer } from 'socket-controllers';
 import * as path from 'path';
 import express from 'express';
+import { buildSchema } from 'type-graphql';
 import bodyParser from 'body-parser';
 
 export class App {
@@ -20,32 +21,28 @@ export class App {
     this.bootstrap();
   }
 
-  public async bootstrap() {
+  private async bootstrap() {
     this.useContainers();
-    await this.typeOrmCreateConnection();
-    this.serveStaticFiles();
+    await this.setupConnection();
     this.setupMiddlewares();
     this.registerSocketControllers();
     this.registerRoutingControllers();
     this.registerDefaultHomePage();
+    await this.setupGraphQL();
   }
 
-  private useContainers() {
+  private useContainers(): void {
     routingControllersUseContainer(Container);
     typeormOrmUseContainer(containerTypeorm);
     socketUseContainer(Container);
   }
 
-  private async typeOrmCreateConnection() {
+  private async setupConnection() {
     try {
       await createConnection();
     } catch (error) {
       console.log('Caught! Cannot connect to database: ', error);
     }
-  }
-
-  private serveStaticFiles() {
-    this.app.use('/public', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
   }
 
   private setupMiddlewares() {
@@ -63,7 +60,7 @@ export class App {
       next();
     });
 
-    server.listen(this.port, () => console.log(`🚀 Server started at http://localhost:${this.port}\n🚨️ Environment: ${process.env.NODE_ENV}`));
+    server.listen(this.port, () => console.log(`🚀 Server started at http://localhost:${this.port}\n🚨️ Environment: ${process.env.APP_ENV}`));
 
     useSocketServer(io, {
       controllers: [__dirname + appConfig.controllersDir],
@@ -89,6 +86,27 @@ export class App {
         mode: appConfig.appEnv,
         date: new Date(),
       });
+    });
+  }
+
+  private async setupGraphQL() {
+    if (!appConfig.graphqlEnabled) {
+      return false;
+    }
+
+    const graphqlHTTP = require('express-graphql').graphqlHTTP;
+
+    const schema = await buildSchema({
+      resolvers: [__dirname + appConfig.resolversDir],
+      emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
+      container: Container,
+    });
+
+    this.app.use('/graphql', (request: express.Request, response: express.Response) => {
+      graphqlHTTP({
+        schema,
+        graphiql: true,
+      })(request, response);
     });
   }
 }

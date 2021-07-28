@@ -9,6 +9,9 @@ this is for you.
 - Docker
 - VueJS
 - Postgres
+- GraphQL
+- ModuleAlias
+- Socket.io
 
 ## Project Structure
 

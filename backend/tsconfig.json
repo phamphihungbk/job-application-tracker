@@ -1,17 +1,25 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "esModuleInterop": true,
     "target": "es6",
     "noImplicitAny": true,
+    "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
     "allowJs": false,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@base/*": ["./*"]
+      "@base/*": [
+        "./*"
+      ],
+      "*": [
+        "node_modules/*"
+      ]
     },
-    "allowSyntheticDefaultImports": true
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   },
   "files.exclude": {
     "**/.git": true,
