@@ -1,13 +1,8 @@
 const fixModuleAlias = require('module-alias');
 
-let folder = '';
-
-if (process.env.APP_ENV == 'production') {
-    folder = 'dist';
-} else {
-    folder = 'src';
-}
+let folder = process.env.APP_ENV === 'production' ? 'dist' : '';
 
 fixModuleAlias.addAliases({
     '@base': __dirname + '/' + folder,
+    '@utils': __dirname + '/' + folder + '/utils',
 });

@@ -12,11 +12,12 @@ export class CreateJobsTable1618771301779 implements MigrationInterface {
           isGenerated: true,
           generationStrategy: 'increment',
         },
-        { name: 'first_name', type: 'varchar', length: '191' },
-        { name: 'last_name', type: 'varchar', length: '191' },
-        { name: 'email', type: 'varchar', length: '191' },
-        { name: 'password', type: 'varchar', length: '191' },
-        { name: 'role_id', type: 'bigint' },
+        { name: 'position', type: 'varchar', length: '191' },
+        { name: 'company', type: 'varchar', length: '191' },
+        { name: 'status', type: 'varchar', length: '191' },
+        { name: 'location', type: 'varchar', length: '191' },
+        { name: 'requirements', type: 'varchar', length: '191' },
+        { name: 'is_startup_company', type: 'boolean' },
       ],
     });
 

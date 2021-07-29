@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 import { fixModuleAlias } from './utils/fix-module-alias';
+
 fixModuleAlias(__dirname);
 import { appConfig } from '@base/config/app';
+import { dbConfig } from '@base/config/db';
 import { useContainer as routingControllersUseContainer, useExpressServer } from 'routing-controllers';
 import { loadHelmet } from '@base/utils/load-helmet';
 import { Container } from 'typedi';
@@ -55,7 +57,7 @@ export class App {
     const server = require('http').Server(this.app);
     const io = require('socket.io')(server);
 
-    this.app.use(function (req: any, res: any, next) {
+    this.app.use(function(req: any, res: any, next) {
       req.io = io;
       next();
     });
