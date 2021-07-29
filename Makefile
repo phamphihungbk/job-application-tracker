@@ -18,6 +18,14 @@ npm-install:
 db-create:
 	docker exec -it postgres-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createdb.sh"
 
+.PHONY: db-migrate ## run migration
+db-migrate:
+	docker exec -it job-app-tracker sh -c "npm run migrate"
+
+.PHONY: db-seed ## run database seeding
+db-seed:
+	docker exec -it job-app-tracker sh -c "npm run db:seed"
+
 .PHONY: files-copy ## copy necessary files
 files-copy:
 	cp ./environment/postgres/docker-entrypoint-initdb.d/createdb.sh.example ./environment/postgres/docker-entrypoint-initdb.d/createdb.sh

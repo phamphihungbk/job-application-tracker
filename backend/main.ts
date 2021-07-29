@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import { fixModuleAlias } from './utils/fix-module-alias';
+import { fixModuleAlias } from './src/utils/fix-module-alias';
 
 fixModuleAlias(__dirname);
 import { appConfig } from '@base/config/app';
 import { dbConfig } from '@base/config/db';
 import { useContainer as routingControllersUseContainer, useExpressServer } from 'routing-controllers';
-import { loadHelmet } from '@base/utils/load-helmet';
+import { loadHelmet } from '@base/src/utils/load-helmet';
 import { Container } from 'typedi';
 import { createConnection, useContainer as typeormOrmUseContainer } from 'typeorm';
 import { Container as containerTypeorm } from 'typeorm-typedi-extensions';

@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "strict": true,
+    "strict": false,
     "allowJs": false,
     "outDir": "dist",
     "baseUrl": ".",
@@ -34,5 +34,8 @@
       "when": "$(basename).ts"
     },
     "**/*.js.map": true
-  }
+  },
+  "include": [
+    "./**/*"
+  ]
 }

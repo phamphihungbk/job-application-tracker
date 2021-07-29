@@ -1,5 +1,5 @@
-import { env } from '@base/utils/env';
-import { toBool } from '@base/utils/to-bool';
+import { env } from '@base/src/utils/env';
+import { toBool } from '@base/src/utils/to-bool';
 
 function getAppPath() {
   let currentDir = __dirname;

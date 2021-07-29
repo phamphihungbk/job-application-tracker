@@ -6,11 +6,11 @@ export class CreateJobsTable1618771301779 implements MigrationInterface {
       name: 'jobs',
       columns: [
         {
-          name: 'id',
-          type: 'bigint',
+          name: "id",
+          type: "uuid",
           isPrimary: true,
-          isGenerated: true,
-          generationStrategy: 'increment',
+          isUnique: true,
+          generationStrategy: 'uuid'
         },
         { name: 'position', type: 'varchar', length: '191' },
         { name: 'company', type: 'varchar', length: '191' },
