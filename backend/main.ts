@@ -1,9 +1,7 @@
 import 'reflect-metadata';
 import { fixModuleAlias } from './src/utils/fix-module-alias';
-
 fixModuleAlias(__dirname);
 import { appConfig } from '@base/config/app';
-import { dbConfig } from '@base/config/db';
 import { useContainer as routingControllersUseContainer, useExpressServer } from 'routing-controllers';
 import { loadHelmet } from '@base/src/utils/load-helmet';
 import { Container } from 'typedi';

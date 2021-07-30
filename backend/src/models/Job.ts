@@ -1,8 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { AbstractModel } from '@base/src/abstracts/AbstractModel';
+import { BaseModel } from '@base/src/abstracts/BaseModel';
 
 @Entity({ name: 'jobs' })
-export class Job extends AbstractModel {
+export class Job extends BaseModel {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
