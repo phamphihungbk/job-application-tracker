@@ -1,4 +1,4 @@
-import { Body, Delete, Get, HttpCode, JsonController, Param, Post, Patch, QueryParams } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, JsonController, Param, Post, QueryParams, Put } from 'routing-controllers';
 import { Service } from 'typedi';
 import { ControllerBase } from '@base/src/abstracts/ControllerBase';
 import { RequestQueryParser } from 'typeorm-simple-query-parser';
@@ -30,12 +30,12 @@ export class JobController extends ControllerBase {
 
   @Post()
   @HttpCode(201)
-  public async create(@Body() job: any) {
+  public async create(@Body() job: JobCreateRequest) {
     console.log(job)
     return await this.jobService.create(job);
   }
 
-  @Patch('/:id')
+  @Put('/:id')
   @HttpCode(200)
   public async update(@Param('id') id: string, @Body() job: JobCreateRequest) {
     return await this.jobService.updateOneById(id, job);

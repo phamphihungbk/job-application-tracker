@@ -32,7 +32,7 @@ export class JobService {
   }
 
   private async getRequestedJobOrFail(id: string, resourceOptions?: object) {
-    let job = await this.jobRepository.getOne(resourceOptions);
+    let job = await this.jobRepository.findOne(id, resourceOptions);
 
     if (!job) {
       throw new JobNotFoundException();

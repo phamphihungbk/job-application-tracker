@@ -1,6 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import { BaseModel } from '@base/src/abstracts/BaseModel';
 import { v4 as uuidv4 } from 'uuid';
+import { Exclude } from "class-transformer";
 
 @Entity({ name: 'jobs' })
 export class Job extends BaseModel {
