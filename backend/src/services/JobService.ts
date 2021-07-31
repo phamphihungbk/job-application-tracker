@@ -13,7 +13,7 @@ export class JobService {
     return await this.jobRepository.getManyAndCount(resourceOptions);
   }
 
-  public async findOneById(id: number, resourceOptions?: object) {
+  public async findOneById(id: string, resourceOptions?: object) {
     return await this.getRequestedJobOrFail(id, resourceOptions);
   }
 
@@ -21,18 +21,18 @@ export class JobService {
     return await this.jobRepository.createJob(data);
   }
 
-  public async updateOneById(id: number, data: object) {
+  public async updateOneById(id: string, data: object) {
     const job = await this.getRequestedJobOrFail(id);
 
     return await this.jobRepository.updateJob(job, data);
   }
 
-  public async deleteOneById(id: number) {
+  public async deleteOneById(id: string) {
     return await this.jobRepository.delete(id);
   }
 
-  private async getRequestedJobOrFail(id: number, resourceOptions?: object) {
-    let job = await this.jobRepository.getOneById(id, resourceOptions);
+  private async getRequestedJobOrFail(id: string, resourceOptions?: object) {
+    let job = await this.jobRepository.getOne(resourceOptions);
 
     if (!job) {
       throw new JobNotFoundException();

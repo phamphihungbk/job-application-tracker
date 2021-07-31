@@ -1,4 +1,4 @@
-import { Body, Delete, Get, HttpCode, JsonController, Param, Post, Put, QueryParams } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, JsonController, Param, Post, Patch, QueryParams } from 'routing-controllers';
 import { Service } from 'typedi';
 import { ControllerBase } from '@base/src/abstracts/ControllerBase';
 import { RequestQueryParser } from 'typeorm-simple-query-parser';
@@ -20,9 +20,9 @@ export class JobController extends ControllerBase {
     return await this.jobService.getAll(resourceOptions);
   }
 
-  @Get('/:id([0-9]+)')
+  @Get('/:id')
   @HttpCode(200)
-  public async getOne(@Param('id') id: number, @QueryParams() parseResourceOptions: RequestQueryParser) {
+  public async getOne(@Param('id') id: string, @QueryParams() parseResourceOptions: RequestQueryParser) {
     const resourceOptions = parseResourceOptions.getAll();
 
     return await this.jobService.findOneById(id, resourceOptions);
@@ -30,19 +30,20 @@ export class JobController extends ControllerBase {
 
   @Post()
   @HttpCode(201)
-  public async create(@Body() job: JobCreateRequest) {
+  public async create(@Body() job: any) {
+    console.log(job)
     return await this.jobService.create(job);
   }
 
-  @Put('/:id')
+  @Patch('/:id')
   @HttpCode(200)
-  public async update(@Param('id') id: number, @Body() job: JobCreateRequest) {
+  public async update(@Param('id') id: string, @Body() job: JobCreateRequest) {
     return await this.jobService.updateOneById(id, job);
   }
 
   @Delete('/:id')
   @HttpCode(204)
-  public async delete(@Param('id') id: number) {
+  public async delete(@Param('id') id: string) {
     return await this.jobService.deleteOneById(id);
   }
 }

@@ -34,3 +34,8 @@ files-copy:
 .PHONY: db-list ## list all database tables
 db-list:
 	docker exec -it postgres-app-tracker sh -c "psql -l"
+
+.PHONY: postgres-extension ## install all extensions for postgres
+postgres-extension:
+	docker exec -it postgres-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createExtension.sh"
+

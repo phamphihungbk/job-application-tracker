@@ -1,10 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import { BaseModel } from '@base/src/abstracts/BaseModel';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity({ name: 'jobs' })
 export class Job extends BaseModel {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   position: string;
@@ -23,4 +24,9 @@ export class Job extends BaseModel {
 
   @Column()
   is_startup_company: boolean;
+
+  @BeforeInsert()
+  async addId() {
+    this.id = uuidv4();
+  }
 }
