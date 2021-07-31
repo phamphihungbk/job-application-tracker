@@ -8,9 +8,7 @@ import { Container } from 'typedi';
 import { createConnection, useContainer as typeormOrmUseContainer } from 'typeorm';
 import { Container as containerTypeorm } from 'typeorm-typedi-extensions';
 import { useSocketServer, useContainer as socketUseContainer } from 'socket-controllers';
-import * as path from 'path';
 import express from 'express';
-import { buildSchema } from 'type-graphql';
 import bodyParser from 'body-parser';
 
 export class App {
@@ -28,7 +26,6 @@ export class App {
     this.registerSocketControllers();
     this.registerRoutingControllers();
     this.registerDefaultHomePage();
-    await this.setupGraphQL();
   }
 
   private useContainers(): void {
@@ -86,27 +83,6 @@ export class App {
         mode: appConfig.appEnv,
         date: new Date(),
       });
-    });
-  }
-
-  private async setupGraphQL() {
-    if (!appConfig.graphqlEnabled) {
-      return false;
-    }
-
-    const graphqlHTTP = require('express-graphql').graphqlHTTP;
-
-    const schema = await buildSchema({
-      resolvers: [__dirname + appConfig.resolversDir],
-      emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
-      container: Container,
-    });
-
-    this.app.use('/graphql', (request: express.Request, response: express.Response) => {
-      graphqlHTTP({
-        schema,
-        graphiql: true,
-      })(request, response);
     });
   }
 }

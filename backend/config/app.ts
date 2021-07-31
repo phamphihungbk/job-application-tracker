@@ -18,7 +18,6 @@ export const appConfig = {
   routePrefix: env('APP_ROUTE_PREFIX'),
   url: env('APP_URL'),
   appPath: getAppPath(),
-  graphqlEnabled: toBool(env('ENABLE_GRAPHQL')),
   entitiesDir: env('TYPEORM_ENTITIES_DIR'),
   controllersDir: env('CONTROLLERS_DIR'),
   middlewaresDir: env('MIDDLEWARES_DIR'),
