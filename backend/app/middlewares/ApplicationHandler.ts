@@ -35,7 +35,7 @@ export class ApplicationHandler implements ExpressErrorMiddlewareInterface {
     }
 
     // Append stack
-    if (error.stack && process.env.APP_ENV === 'development' && responseObject.status == 500) {
+    if (error.stack && process.env.APP_ENV === 'dev' && responseObject.status == 500) {
       responseObject.stack = error.stack;
     }
 

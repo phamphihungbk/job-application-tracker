@@ -1,0 +1,9 @@
+server {
+  listen 80;
+  server_name jobapptracker.local;
+  root public/;
+
+  location / {
+    index index.html;
+  }
+}

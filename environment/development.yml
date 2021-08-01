@@ -1,38 +1,50 @@
 version: '3'
 
 networks:
-  app-tracker:
+  app-tracker-network:
     driver: bridge
 
 services:
   backend-app-tracker:
-    image: job-app-tracker
+    image: backend-app-tracker
     build:
       context: ./backend
     volumes:
       - ../backend:/backend
       - ../.env:/backend/.env
-    container_name: job-app-tracker
+    container_name: backend-app-tracker
     working_dir: /backend
     ports:
       - 3000:3000
     tty: true
     networks:
-      - app-tracker
+      - app-tracker-network
 
-  postgres-app-tracker:
-    image: postgres-app-tracker
+  database-app-tracker:
+    image: database-app-tracker
     build:
         context: ./postgres
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     restart: always
-    container_name: postgres-app-tracker
+    container_name: database-app-tracker
     environment:
       POSTGRES_USER: "${POSTGRES_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-    ports:
-    - 5432:5432
     networks:
-      - app-tracker
+      - app-tracker-network
+
+  frontend-app-tracker:
+    image: frontend-app-tracker
+    build:
+      context: ./nginx
+    container_name: frontend-app-tracker
+    working_dir: /frontend
+    volumes:
+      - ../frontend:/frontend
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - app-tracker-network

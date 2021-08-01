@@ -9,10 +9,10 @@ function getAppPath() {
 }
 
 export const appConfig = {
-  appEnv: env('APP_ENV') || 'development',
+  appEnv: env('APP_ENV') || 'dev',
   isProduction: env('APP_ENV') === 'production',
   isStaging: env('APP_ENV') === 'staging',
-  isDevelopment: env('APP_ENV') === 'development',
+  isDevelopment: env('APP_ENV') === 'dev',
   name: env('APP_NAME'),
   port: Number(env('APP_PORT')),
   routePrefix: env('APP_ROUTE_PREFIX'),
