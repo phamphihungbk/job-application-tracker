@@ -43,6 +43,7 @@ services:
     working_dir: /frontend
     volumes:
       - ../frontend:/frontend
+      - ../logs/nginx:/var/log/nginx
     ports:
       - 80:80
       - 443:443

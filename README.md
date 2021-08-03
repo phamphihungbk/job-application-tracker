@@ -11,6 +11,7 @@ this is for you.
 - Postgres
 - ModuleAlias
 - Socket.io
+- Nginx
 
 ## Project Structure
 

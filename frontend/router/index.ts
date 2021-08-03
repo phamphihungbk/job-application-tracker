@@ -1,28 +1,25 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
-/* Layout */
-import Layout from '@base/layout/index.vue'
-
 Vue.use(VueRouter)
 
 export const constantRoutes: RouteConfig[] = [
   {
     path: '/',
-    component: Layout,
+    component: () => import('@base/views/home/index.vue'),
     name: 'Home',
     meta: {
       title: 'HomePage',
     }
   },
   {
-    path: '/jobs',
-    component: Layout,
+    path: '/job',
+    component: () => import('@base/views/job/index.vue'),
     name: 'Job',
     meta: {
       title: 'Job Application List',
     }
-  }
+  },
 ]
 
 const router = new VueRouter({
