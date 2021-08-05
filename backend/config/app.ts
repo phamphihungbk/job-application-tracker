@@ -10,7 +10,7 @@ function getAppPath() {
 
 export const appConfig = {
   appEnv: env('APP_ENV') || 'dev',
-  isProduction: env('APP_ENV') === 'production',
+  isProduction: env('APP_ENV') === 'prod',
   isStaging: env('APP_ENV') === 'staging',
   isDevelopment: env('APP_ENV') === 'dev',
   name: env('APP_NAME'),

@@ -1,4 +1,4 @@
-import request from '@base/utils/request'
+import request from '@/utils/request'
 
 export const getJobs = (params: any) =>
   request({

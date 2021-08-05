@@ -12,19 +12,19 @@ down:
 
 .PHONY: npm install ## run npm install inside docker container
 npm-install:
-	docker exec -it job-app-tracker sh -c "npm install"
+	docker exec -it backend-app-tracker sh -c "npm install"
 
 .PHONY: db-create ## create postgres database
 db-create:
-	docker exec -it postgres-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createdb.sh"
+	docker exec -it database-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createdb.sh"
 
 .PHONY: db-migrate ## run migration
 db-migrate:
-	docker exec -it job-app-tracker sh -c "npm run migrate"
+	docker exec -it backend-app-tracker sh -c "npm run migrate"
 
 .PHONY: db-seed ## run database seeding
 db-seed:
-	docker exec -it job-app-tracker sh -c "npm run db:seed"
+	docker exec -it backend-app-tracker sh -c "npm run db:seed"
 
 .PHONY: files-copy ## copy necessary files
 files-copy:
@@ -33,9 +33,12 @@ files-copy:
 
 .PHONY: db-list ## list all database tables
 db-list:
-	docker exec -it postgres-app-tracker sh -c "psql -l"
+	docker exec -it database-app-tracker sh -c "psql -l"
 
 .PHONY: postgres-extension ## install all extensions for postgres
 postgres-extension:
-	docker exec -it postgres-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createExtension.sh"
+	docker exec -it database-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createExtension.sh"
 
+.PHONY: server-dev ## run server with development mode
+server-dev:
+	docker exec -it backend-app-tracker sh -c "npm run dev"

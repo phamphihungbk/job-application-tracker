@@ -6,20 +6,30 @@ Vue.use(VueRouter)
 export const constantRoutes: RouteConfig[] = [
   {
     path: '/',
-    component: () => import('@base/views/home/index.vue'),
+    component: () => import('@/views/home/index.vue'),
     name: 'Home',
     meta: {
-      title: 'HomePage',
+      title: 'HomePage'
     }
   },
   {
     path: '/job',
-    component: () => import('@base/views/job/index.vue'),
+    component: () => import('@/views/job/index.vue'),
     name: 'Job',
     meta: {
-      title: 'Job Application List',
+      title: 'Job Application List'
     }
   },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404.vue'),
+    meta: { hidden: true }
+  },
+  {
+    path: '*',
+    redirect: '/404',
+    meta: { hidden: true }
+  }
 ]
 
 const router = new VueRouter({
@@ -30,7 +40,6 @@ const router = new VueRouter({
       return { x: 0, y: 0 }
     }
   },
-  base: process.env.BASE_URL,
   routes: constantRoutes
 })
 

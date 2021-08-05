@@ -1,3 +1,3 @@
 dist/*.js
-src/assets
+assets
 public/**/*.js

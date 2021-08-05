@@ -25,8 +25,8 @@ module.exports = {
       }],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.APP_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.APP_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': ['error', 'never'],
     'vue/array-bracket-spacing': 'error',
     'vue/arrow-spacing': 'error',
@@ -39,16 +39,5 @@ module.exports = {
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',
     'vue/object-curly-spacing': 'error'
-  },
-  overrides: [
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        jest: true
-      }
-    }
-  ]
+  }
 }
