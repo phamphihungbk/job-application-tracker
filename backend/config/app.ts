@@ -1,5 +1,4 @@
 import { env } from '@base/src/utils/env';
-import { toBool } from '@base/src/utils/to-bool';
 
 function getAppPath() {
   let currentDir = __dirname;
@@ -14,9 +13,9 @@ export const appConfig = {
   isStaging: env('APP_ENV') === 'staging',
   isDevelopment: env('APP_ENV') === 'dev',
   name: env('APP_NAME'),
-  port: Number(env('APP_PORT')),
-  routePrefix: env('APP_ROUTE_PREFIX'),
-  url: env('APP_URL'),
+  port: Number(env('BACKEND_PORT')),
+  routePrefix: env('BACKEND_ROUTE_PREFIX'),
+  url: env('BACKEND_URL'),
   appPath: getAppPath(),
   entitiesDir: env('TYPEORM_ENTITIES_DIR'),
   controllersDir: env('CONTROLLERS_DIR'),

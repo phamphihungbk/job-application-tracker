@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
+import { env } from '@/utils/env'
 
 const service = axios.create({
-  baseURL: process.env.APP_BASE_API,
+  baseURL: env('BACKEND_API_ENDPOINT'),
   timeout: 5000
 })
 
