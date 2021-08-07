@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { env } from '@/utils/env'
 
 const service = axios.create({
-  baseURL: env('BACKEND_API_ENDPOINT'),
+  baseURL: 'http://localhost:3000',
   timeout: 5000
 })
 
@@ -18,15 +17,8 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    // Some example codes here:
-    // code == 20000: success
-    // code == 50001: invalid access token
-    // code == 50002: already login in other place
-    // code == 50003: access token expired
-    // code == 50004: invalid user (user not exist)
-    // code == 50005: username or password is incorrect
     const res = response.data
-    if (res.code !== 20000) {
+    if (res.code !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',

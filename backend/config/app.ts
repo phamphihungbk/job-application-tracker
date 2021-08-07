@@ -13,6 +13,7 @@ export const appConfig = {
   isStaging: env('APP_ENV') === 'staging',
   isDevelopment: env('APP_ENV') === 'dev',
   name: env('APP_NAME'),
+  hostname: env('BACKEND_HOST'),
   port: Number(env('BACKEND_PORT')),
   routePrefix: env('BACKEND_ROUTE_PREFIX'),
   url: env('BACKEND_URL'),

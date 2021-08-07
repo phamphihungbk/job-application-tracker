@@ -39,6 +39,6 @@ db-list:
 postgres-extension:
 	docker exec -it database-app-tracker sh -c "bash /docker-entrypoint-initdb.d/createExtension.sh"
 
-.PHONY: server-dev ## run server with development mode
-server-dev:
+.PHONY: backend-dev ## run backend with development mode
+backend-dev:
 	docker exec -it backend-app-tracker sh -c "npm run dev"

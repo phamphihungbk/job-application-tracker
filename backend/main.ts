@@ -14,6 +14,7 @@ import bodyParser from 'body-parser';
 export class App {
   private app: express.Application = express();
   private port: Number = appConfig.port;
+  private hostname: String = appConfig.hostname;
 
   public constructor() {
     this.bootstrap();
@@ -57,7 +58,7 @@ export class App {
       next();
     });
 
-    server.listen(this.port, () => console.log(`🚀 Server started at http://localhost:${this.port}\n🚨️ Environment: ${process.env.APP_ENV}`));
+    server.listen(this.port, this.hostname, () => console.log(`🚀 Server started at ${this.hostname}:${this.port}\n🚨️ Environment: ${process.env.APP_ENV}`));
 
     useSocketServer(io, {
       controllers: [__dirname + appConfig.controllersDir],
@@ -67,7 +68,10 @@ export class App {
   private registerRoutingControllers() {
     useExpressServer(this.app, {
       validation: { stopAtFirstError: true },
-      cors: true,
+      cors: {
+        origin: '*',
+        methods: 'GET,PUT,POST,DELETE',
+      },
       classTransformer: true,
       defaultErrorHandler: false,
       routePrefix: appConfig.routePrefix,
