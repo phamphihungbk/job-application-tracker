@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
+import settings from '@/settings'
 
 const service = axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 5000
+  baseURL: settings.apiEndpoint,
+  timeout: settings.apiTimeout
 })
 
 service.interceptors.request.use(

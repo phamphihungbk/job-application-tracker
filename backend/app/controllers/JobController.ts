@@ -18,7 +18,7 @@ export class JobController extends ControllerBase {
     const resourceOptions = parseResourceOptions.getAll();
     let data = await this.jobService.getAll(resourceOptions)
 
-    return JobController.respondWithCustomData(200, 'successfully found', data);
+    return JobController.respondWithCustomData(200, 'Successfully found', data);
   }
 
   @Get('/:id')

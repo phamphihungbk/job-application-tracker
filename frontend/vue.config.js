@@ -6,25 +6,6 @@ module.exports = {
   publicPath: process.env.APP_ENV === 'prod' ? '/dist/' : '/',
   lintOnSave: process.env.APP_ENV === 'dev',
   productionSourceMap: false,
-  devServer: {
-    port: process.env.BACKEND_PORT,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    progress: false,
-    proxy: {
-      [process.env.FRONTEND_BASE_API]: {
-        target: process.env.BACKEND_API_ENDPOINT,
-        changeOrigin: true, // needed for virtual hosted sites
-        ws: true, // proxy websockets
-        pathRewrite: {
-          ['^' + process.env.FRONTEND_BASE_API]: ''
-        }
-      }
-    }
-  },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',

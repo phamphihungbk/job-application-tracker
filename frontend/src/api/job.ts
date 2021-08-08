@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const getJobs = (params: any) =>
   request({
-    url: '/v1/jobs',
+    url: '/jobs',
     method: 'get',
     params
   })
