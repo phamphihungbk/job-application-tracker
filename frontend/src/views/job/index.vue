@@ -11,17 +11,12 @@
       </el-table-column>
       <el-table-column label='Requirements' prop='requirements'>
       </el-table-column>
-      <el-table-column label='Company Types' prop='is_startup_company'>
+      <el-table-column label="Operations" align="right">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="updateRow(scope.row)">Update</el-button>
+          <el-button size="mini" type="danger" @click="deleteRow(scope.row)">Delete</el-button>
+        </template>
       </el-table-column>
-<!--      <el-table-column align='right'>-->
-<!--        <template slot='header' >-->
-<!--          <el-input v-model='search' size='mini' placeholder='Type to search' />-->
-<!--        </template>-->
-<!--        <template >-->
-<!--          <el-button size='mini' >Edit</el-button>-->
-<!--          <el-button size='mini' type='danger' >Delete</el-button>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
     </el-table>
   </div>
 </template>
@@ -57,12 +52,12 @@ export default class extends Vue {
     }, 0.5 * 1000)
   }
 
-  private async delete(id: string) {
-    await deleteJob(id)
+  private async deleteRow(data: any) {
+    await deleteJob(data.id)
   }
 
-  private async update(id: string, data: object) {
-    await updateJob(id, data)
+  private async updateRow(data: any) {
+    await updateJob(data.id, data)
   }
 }
 </script>

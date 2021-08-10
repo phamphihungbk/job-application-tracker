@@ -2,6 +2,19 @@
   "name": "job-application-tracker-backend",
   "version": "1.0.0",
   "description": "Backend for job application tracker",
+  "author": "HUNG PHAM",
+  "scripts": {
+    "dev": "nodemon --exec './node_modules/.bin/ts-node' main.ts",
+    "start": "npm run build && node ./dist/main.js",
+    "build": "tsc",
+    "typeorm": "ts-node -r ./fix-module-alias.js ./node_modules/.bin/typeorm",
+    "make:migration": "npm run typeorm -- migration:create -n",
+    "migrate": "npm run typeorm -- migration:run",
+    "migrate:revert": "npm run typeorm -- migration:revert",
+    "db:seed": "ts-node -r ./fix-module-alias.js ./node_modules/typeorm-seeding/dist/cli.js seed",
+    "code:format": "prettier --write \"src/**/*.{ts,css,js,html}\"",
+    "code:check": "prettier --check \"src/**/*.{ts,css,js,html}\""
+  },
   "dependencies": {
     "@types/socket.io": "^2.1.13",
     "body-parser": "^1.19.0",
@@ -43,17 +56,7 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.3.5"
   },
-  "scripts": {
-    "dev": "nodemon --exec './node_modules/.bin/ts-node' main.ts",
-    "start": "npm run build && node ./dist/main.js",
-    "build": "tsc",
-    "typeorm": "ts-node -r ./fix-module-alias.js ./node_modules/.bin/typeorm",
-    "make:migration": "npm run typeorm -- migration:create -n",
-    "migrate": "npm run typeorm -- migration:run",
-    "migrate:revert": "npm run typeorm -- migration:revert",
-    "db:seed": "ts-node -r ./fix-module-alias.js ./node_modules/typeorm-seeding/dist/cli.js seed",
-    "code:format": "prettier --write \"src/**/*.{ts,css,js,html}\"",
-    "code:check": "prettier --check \"src/**/*.{ts,css,js,html}\""
-  },
-  "author": "HUNG PHAM"
+  "engines": {
+    "node": "~11.13.0"
+  }
 }
