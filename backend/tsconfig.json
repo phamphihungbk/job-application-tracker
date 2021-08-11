@@ -14,9 +14,6 @@
       "@base/*": [
         "./*"
       ],
-      "@utils/*": [
-        "./utils/*"
-      ],
       "*": [
         "node_modules/*"
       ]

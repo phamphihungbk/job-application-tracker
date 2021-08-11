@@ -1,7 +1,7 @@
 interface ISettings {
-  title: string,
-  errorLog: string[],
-  apiEndpoint: string,
+  title: string
+  errorLog: string[]
+  apiEndpoint: string
   apiTimeout: number
 }
 // TODO: load config dynamically from env file

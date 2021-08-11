@@ -33,6 +33,7 @@ export const constantRoutes: RouteConfig[] = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
       return savedPosition

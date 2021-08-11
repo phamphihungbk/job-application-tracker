@@ -3,7 +3,6 @@ require('dotenv').config();
 const name = 'Job Application Tracker';
 
 module.exports = {
-  publicPath: process.env.APP_ENV === 'prod' ? '/dist/' : '/',
   lintOnSave: process.env.APP_ENV === 'dev',
   productionSourceMap: false,
   pluginOptions: {

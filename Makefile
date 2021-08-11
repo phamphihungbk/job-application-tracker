@@ -42,3 +42,17 @@ postgres-extension:
 .PHONY: backend-dev ## run backend with development mode
 backend-dev:
 	docker exec -it backend-app-tracker sh -c "npm run dev"
+
+.PHONY: frontend-build ## build frontend with production mode
+frontend-build:
+	docker exec -it frontend-app-tracker sh -c "yarn install && yarn run build:prod"
+
+.PHONY: prod ## start job tracker web application in production mode
+prod:
+	cp ./config/env.prod ./.env
+	docker exec -i frontend-app-tracker sh -c "yarn install && yarn run build:prod"
+	docker exec -it backend-app-tracker sh -c "npm run start"
+
+.PHONY: host ## add domain host into your host file
+host:
+	sudo -- sh -c -e "echo '127.0.0.1 api.jobtracker.local\n127.0.0.1 jobtracker.local' >> /etc/hosts"

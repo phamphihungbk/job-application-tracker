@@ -24,3 +24,40 @@ this is for you.
 ├── environment                 # dockerfile
 └── frontend                    # containes vuejs code
 ```
+
+## Project setup:
+
+Add domain host to your host file
+```bash
+make host
+```
+
+Build docker image
+```bash
+make build
+```
+
+Start docker container
+```bash
+make up
+```
+
+Create DB table in Postgres
+```bash
+make db-create
+```
+
+Run migration on DB
+```bash
+make db-migrate
+```
+
+Start job tracker application
+```bash
+make prod
+```
+
+Access website by using the link below
+```bash
+jobtracker.local
+```
