@@ -1,6 +1,7 @@
 <template>
   <div class='app-container'>
-    <el-table :data='list' style='width: 100%' border fit highlight-current-row>
+    <navbar />
+    <el-table :data='list' style='width: 100%; margin-top: 20px;' border fit highlight-current-row>
       <el-table-column label='Position' prop='position'>
       </el-table-column>
       <el-table-column label='Company' prop='company'>
@@ -25,9 +26,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { IJobData } from '@/api/types'
 import { getJobs, deleteJob, updateJob } from '@/api/job'
+import Navbar from '@/layout/components/Navbar/index.vue'
 
 @Component({
-  name: 'Job'
+  name: 'Job',
+  components: {
+    Navbar
+  }
 })
 export default class extends Vue {
   private listLoading = true

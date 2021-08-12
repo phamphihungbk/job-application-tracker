@@ -3,8 +3,8 @@
 📅 You might have to apply job for multiple companies at the same time and you want to have somewhere to track entire process,
 this is for you.
 
-![demo](./images/demo.png)
-
+![demo_1](./images/demo_1.png)
+![demo_2](./images/demo_2.png)
 
 ### Technologies used
 
@@ -57,7 +57,7 @@ Start job tracker application
 make prod
 ```
 
-Access website by using the link below
+Access website by putting this domain on your browser
 ```bash
 jobtracker.local
 ```

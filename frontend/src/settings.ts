@@ -9,7 +9,7 @@ const settings: ISettings = {
   title: 'Job Application Tracker',
   errorLog: ['production'],
   apiEndpoint: 'http://api.jobtracker.local/v1',
-  apiTimeout: 5000
+  apiTimeout: 9000
 }
 
 export default settings
