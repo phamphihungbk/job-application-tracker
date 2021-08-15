@@ -51,8 +51,28 @@ frontend-build:
 prod:
 	cp ./config/env.prod ./.env
 	docker exec -i frontend-app-tracker sh -c "yarn install && yarn run build:prod"
-	docker exec -it backend-app-tracker sh -c "npm run start"
+	docker exec -it backend-app-tracker sh -c "npm run install && npm run start"
 
 .PHONY: host ## add domain host into your host file
 host:
 	sudo -- sh -c -e "echo '127.0.0.1 api.jobtracker.local\n127.0.0.1 jobtracker.local' >> /etc/hosts"
+
+.PHONY: terraform-validate ## validate terraform plan
+terraform-validate:
+	terraform -chdir=deployment validate
+
+.PHONY: terraform-init ## initialize terraform
+terraform-init:
+	terraform -chdir=deployment init
+
+.PHONY: terraform-plan ## show entire terraform plan
+terraform-plan:
+	terraform -chdir=deployment plan
+
+.PHONY: terraform-apply ## run terraform plan with actual result
+terraform-apply:
+	terraform -chdir=deployment apply -auto-approve
+
+.PHONY: terraform-destroy ## destroy instance with terraform
+terraform-destroy:
+	terraform -chdir=deployment destroy -auto-approve
