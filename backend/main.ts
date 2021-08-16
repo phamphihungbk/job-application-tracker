@@ -5,7 +5,7 @@ import { appConfig } from '@base/config/app';
 import { useContainer as routingControllersUseContainer, useExpressServer } from 'routing-controllers';
 import { loadHelmet } from '@base/src/utils/load-helmet';
 import { Container } from 'typedi';
-import { createConnection, useContainer as typeormOrmUseContainer } from 'typeorm';
+import { createConnection, useContainer as typeormUseContainer } from 'typeorm';
 import { Container as containerTypeorm } from 'typeorm-typedi-extensions';
 import { useSocketServer, useContainer as socketUseContainer } from 'socket-controllers';
 import express from 'express';
@@ -30,7 +30,7 @@ export class App {
 
   private useContainers(): void {
     routingControllersUseContainer(Container);
-    typeormOrmUseContainer(containerTypeorm);
+    typeormUseContainer(containerTypeorm);
     socketUseContainer(Container);
   }
 
